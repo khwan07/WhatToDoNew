@@ -1,0 +1,33 @@
+<com.brighthead.whattodo.BgColorFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/bg_color_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:id="@+id/bg_color_relative"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <TextView
+            android:id="@+id/bg_color_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="BG Color"
+            android:textSize="30dp" />
+
+        <ListView
+            android:id="@+id/bg_color_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/bg_color_text" />
+
+        <Button
+            android:id="@+id/bg_color_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/bg_color_edit"
+            android:text="@string/commit" />
+    </RelativeLayout>
+
+</com.brighthead.whattodo.BgColorFrameLayout>

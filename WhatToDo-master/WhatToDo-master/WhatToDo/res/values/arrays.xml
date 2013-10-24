@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="color_name_entries" translatable="false">
+        <item>@string/black</item>
+        <item>@string/blue</item>
+        <item>@string/yellow</item>
+        <item>@string/red</item>
+    </string-array>
+    <array name="color_entries" translatable="false">
+        <item>@color/black</item>
+        <item>@color/blue</item>
+        <item>@color/yellow</item>
+        <item>@color/red</item>
+    </array>
+</resources>
