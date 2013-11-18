@@ -29,12 +29,9 @@ public class EditWorkFrameLayout extends FrameLayout implements ILayout, OnClick
         mContext = context;
     }
     
-    public void resume(Context con) {
-    	mContext = con;
-    }
-
     @Override
-    public void init() {
+    public void init(Context con) {
+    	mContext = con;
         if (mTextView == null) {
             mTextView = (TextView) findViewById(R.id.edit_work_text);
         }

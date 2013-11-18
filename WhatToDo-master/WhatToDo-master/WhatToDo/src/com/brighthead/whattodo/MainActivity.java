@@ -49,10 +49,10 @@ public class MainActivity extends Activity implements View.OnClickListener,
 
 	@Override
 	protected void onResume() {
-		super.onResume();
 
 		initializeLayout();
 		initializeListener();
+		super.onResume();
 
 	}
 
@@ -97,16 +97,16 @@ public class MainActivity extends Activity implements View.OnClickListener,
 
 		if (mEditWorkView == null) {
 			mEditWorkView = (EditWorkFrameLayout) findViewById(R.id.edit_work_layout);
-			mEditWorkView.init();
+			mEditWorkView.init(getApplicationContext());
 		} else {
-			mEditWorkView.resume(getApplicationContext());
+			mEditWorkView.init(getApplicationContext());
 		}
 
 		if (mBgColorView == null) {
 			mBgColorView = (BgColorFrameLayout) findViewById(R.id.bg_color_layout);
-			mBgColorView.init();
+			mBgColorView.init(getApplicationContext());
 		} else {
-			mBgColorView.resume(getApplicationContext());
+			mBgColorView.init(getApplicationContext());
 		}
 
 	}

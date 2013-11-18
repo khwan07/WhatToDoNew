@@ -49,12 +49,9 @@ public class BgColorFrameLayout extends FrameLayout implements ILayout, OnItemCl
         mContext = context;
     }
     
-    public void resume(Context con) {
-    	mContext = con;
-    }
-
     @Override
-    public void init() {
+    public void init(Context con) {
+    	mContext = con;
         if (mText == null) {
             mText = (TextView) findViewById(R.id.bg_color_text);
         }
