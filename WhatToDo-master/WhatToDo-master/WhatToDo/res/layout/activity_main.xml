@@ -8,65 +8,76 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <RelativeLayout
-            android:id="@+id/edit_work_relative"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:id="@+id/main_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:text="@string/hello_world"
-                android:textSize="30dp"
-                tools:context=".MainActivity" />
-
-            <Button
-                android:id="@+id/work_edit"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/main_text"
-                android:text="EditWork" />
-
-            <Button
-                android:id="@+id/color_edit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/work_edit"
-                android:text="BG" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/btn_layout"
+        <TextView
+            android:id="@+id/main_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/edit_work_relative" >
+            android:layout_centerHorizontal="true"
+            android:text="@string/hello_world"
+            android:textSize="30dp"
+            tools:context=".MainActivity" />
 
-            <Button
-                android:id="@+id/start_btn"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="1" >
+
+            <RelativeLayout
+                android:id="@+id/edit_work_relative"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_weight="0.8" >
+
+                <Button
+                    android:id="@+id/work_edit"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="EditWork" />
+
+                <Button
+                    android:id="@+id/color_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/work_edit"
+                    android:text="BG" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/btn_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="start" />
+                android:layout_weight="0.2"
+                android:layout_gravity="center" >
 
-            <Button
-                android:id="@+id/stop_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@id/start_btn"
-                android:layout_toRightOf="@id/start_btn"
-                android:text="stop" />
-        </RelativeLayout>
+                <Button
+                    android:id="@+id/start_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="start" />
+
+                <Button
+                    android:id="@+id/stop_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/start_btn"
+                    android:layout_toRightOf="@id/start_btn"
+                    android:text="stop" />
+            </RelativeLayout>
+        </LinearLayout>
     </RelativeLayout>
-    
-    <include layout="@layout/edit_work"
+
+    <include
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        layout="@layout/edit_work"
         android:visibility="gone" />
-    
-    <include layout="@layout/bg_color"
+
+    <include
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        layout="@layout/bg_color"
         android:visibility="gone" />
 
 </FrameLayout>

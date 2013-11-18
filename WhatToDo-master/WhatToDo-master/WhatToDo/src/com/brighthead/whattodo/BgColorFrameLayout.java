@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
+
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -16,6 +17,8 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.brighthead.whattodo.R;
 
 public class BgColorFrameLayout extends FrameLayout implements ILayout, OnItemClickListener, OnClickListener {
 
@@ -34,7 +37,7 @@ public class BgColorFrameLayout extends FrameLayout implements ILayout, OnItemCl
     private ArrayAdapter<String> mBgAdapter;
     
     private int mBgArrayNum = -1;
-
+    
     
     public BgColorFrameLayout(Context context) {
         super(context);
@@ -44,6 +47,10 @@ public class BgColorFrameLayout extends FrameLayout implements ILayout, OnItemCl
     public BgColorFrameLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
         mContext = context;
+    }
+    
+    public void resume(Context con) {
+    	mContext = con;
     }
 
     @Override

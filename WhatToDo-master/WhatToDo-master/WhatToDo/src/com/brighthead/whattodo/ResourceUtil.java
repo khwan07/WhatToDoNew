@@ -6,6 +6,8 @@ import java.util.HashMap;
 
 import android.content.Context;
 
+import com.brighthead.whattodo.R;
+
 public class ResourceUtil {
     private static final int ID_COLOR_ARRAY = R.array.color_entries;
     private static final int ID_COLOR_NAME_ARRAY = R.array.color_name_entries;

@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+
 public class EditWorkFrameLayout extends FrameLayout implements ILayout, OnClickListener {
     
     private ILayoutListener mListener = null;
@@ -26,6 +27,10 @@ public class EditWorkFrameLayout extends FrameLayout implements ILayout, OnClick
     public EditWorkFrameLayout(Context context) {
         super(context);
         mContext = context;
+    }
+    
+    public void resume(Context con) {
+    	mContext = con;
     }
 
     @Override

@@ -1,10 +1,14 @@
 package com.brighthead.whattodo.service;
 
+import android.animation.Animator;
+import android.animation.Animator.AnimatorListener;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.app.Service;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.PixelFormat;
 import android.os.IBinder;
 import android.util.Log;
@@ -49,6 +53,21 @@ public class WhatToDoService extends Service implements OnTouchListener,
 	public void onCreate() {
 		Log.d(TAG, "hwankim onCreate");
 		super.onCreate();
+		initializeReceiver();
+		showAnimation();
+	}
+	
+	private void initializeReceiver() {
+		IntentFilter filter = new IntentFilter(Intent.ACTION_USER_PRESENT);
+		registerReceiver(mReceiver, filter);
+	}
+	
+	private void showAnimation() {
+		initView();
+		startAnim();
+	}
+	
+	private void initView() {
 		LayoutInflater li = (LayoutInflater) getApplicationContext()
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		rootView = li.inflate(R.layout.service_main, null);
@@ -82,7 +101,6 @@ public class WhatToDoService extends Service implements OnTouchListener,
 																			// 留ㅻ땲��
 		mWindowManager.addView(rootView, mParams); // 理쒖긽���덈룄�곗뿉 酉��ｊ린.
 													// permission�꾩슂.
-		startAnim();
 	}
 	
 	private void startAnim() {
@@ -92,6 +110,34 @@ public class WhatToDoService extends Service implements OnTouchListener,
 		ObjectAnimator alpha = ObjectAnimator.ofFloat(mTextView, "alpha", 0f, 1f);
 		alpha.setDuration(1000);
 		AnimatorSet anim = new AnimatorSet();
+		
+		anim.addListener(new AnimatorListener() {
+			
+			@Override
+			public void onAnimationStart(Animator animation) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void onAnimationRepeat(Animator animation) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void onAnimationEnd(Animator animation) {
+				Log.d(TAG, "hwankim onAnimationEnd");
+				destroyView();
+			}
+			
+			@Override
+			public void onAnimationCancel(Animator animation) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
 		anim.playTogether(translateX, alpha);
 		anim.start();
 	}
@@ -103,15 +149,14 @@ public class WhatToDoService extends Service implements OnTouchListener,
 		Log.d(TAG, "hwankim onStartCommand");
 		return super.onStartCommand(intent, flags, startId);
 	}
-
-	@Override
-	public boolean onUnbind(Intent intent) {
-		Log.d(TAG, "hwankim onUnbind");
+	
+	private void destroyView() {
 		if (mTextView != null) {
 			mTextView = null;
 		}
 
 		if (rootView != null) {
+			rootView.setVisibility(View.GONE);
 			((WindowManager) getSystemService(WINDOW_SERVICE))
 					.removeView(rootView);
 			rootView = null;
@@ -119,6 +164,12 @@ public class WhatToDoService extends Service implements OnTouchListener,
 		if (mWindowManager != null) {
 			mWindowManager = null;
 		}
+	}
+
+	@Override
+	public boolean onUnbind(Intent intent) {
+		Log.d(TAG, "hwankim onUnbind");
+		destroyView();
 
 		return super.onUnbind(intent);
 	}
@@ -134,18 +185,8 @@ public class WhatToDoService extends Service implements OnTouchListener,
 		 * mBtn.setOnTouchListener(null); mBtn.setOnClickListener(null); mBtn =
 		 * null; }
 		 */
-		if (mTextView != null) {
-			mTextView = null;
-		}
-
-		if (rootView != null) {
-			((WindowManager) getSystemService(WINDOW_SERVICE))
-					.removeView(rootView);
-			rootView = null;
-		}
-		if (mWindowManager != null) {
-			mWindowManager = null;
-		}
+		destroyView();
+		unregisterReceiver(mReceiver);
 	}
 
 	@Override
@@ -178,5 +219,17 @@ public class WhatToDoService extends Service implements OnTouchListener,
 		// TODO Auto-generated method stub
 
 	}
+	
+	private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
+
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			String action = intent.getAction();
+			if (action.equals(Intent.ACTION_USER_PRESENT)) {
+				showAnimation();
+			}
+		}
+		
+	};
 
 }
