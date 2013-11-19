@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -39,6 +40,7 @@ public class MainActivity extends Activity implements View.OnClickListener,
 		super.onCreate(savedInstanceState);
 		ResourceUtil.initialize(getApplicationContext());
 		setContentView(R.layout.activity_main);
+		initializeLayout();
 	}
 
 	@Override
@@ -49,9 +51,7 @@ public class MainActivity extends Activity implements View.OnClickListener,
 
 	@Override
 	protected void onResume() {
-
-		initializeLayout();
-		initializeListener();
+		setClickListener(this);
 		super.onResume();
 
 	}
@@ -111,30 +111,46 @@ public class MainActivity extends Activity implements View.OnClickListener,
 
 	}
 
-	private void initializeListener() {
+	private void setClickListener(Object obj) {
 		if (mStartBtn != null) {
-			mStartBtn.setOnClickListener(this);
+		    if (obj == null) {
+		        mStartBtn.setOnClickListener(null);
+		    } else {
+		        mStartBtn.setOnClickListener((OnClickListener) obj);
+		    }
 		}
 		if (mStopBtn != null) {
-			mStopBtn.setOnClickListener(this);
+		    if (obj == null) {
+		        mStopBtn.setOnClickListener(null);
+		    } else {
+		        mStopBtn.setOnClickListener((OnClickListener) obj);
+		    }
 		}
 		if (mEditWorkBtn != null) {
-			mEditWorkBtn.setOnClickListener(this);
+		    if (obj == null) {
+		        mEditWorkBtn.setOnClickListener(null);
+		    } else {
+		        mEditWorkBtn.setOnClickListener((OnClickListener) obj);
+		    }
 		}
 		if (mBgColorBtn != null) {
-			mBgColorBtn.setOnClickListener(this);
+		    if (obj == null) {
+		        mBgColorBtn.setOnClickListener(null);
+		    } else {
+		        mBgColorBtn.setOnClickListener((OnClickListener) obj);
+		    }
 		}
 	}
 
 	@Override
 	protected void onPause() {
 		super.onPause();
-		releaseLayout();
-
+		setClickListener(null);
 	}
 
 	@Override
 	protected void onDestroy() {
+	    releaseLayout();
 		ResourceUtil.release();
 		super.onDestroy();
 	}

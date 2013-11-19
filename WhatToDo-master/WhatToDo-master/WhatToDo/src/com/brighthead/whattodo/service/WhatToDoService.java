@@ -67,41 +67,35 @@ public class WhatToDoService extends Service implements OnTouchListener,
 		startAnim();
 	}
 	
-	private void initView() {
-		LayoutInflater li = (LayoutInflater) getApplicationContext()
-				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		rootView = li.inflate(R.layout.service_main, null);
-		mTextView = (TextView) rootView.findViewById(R.id.service_text);
-		mTextView.setText(SharedPreference.getSharedPreference(
-				getApplicationContext(),
-				getApplicationContext().getString(R.string.pref_key_work)));
-		String bgColor = SharedPreference.getSharedPreference(
-				getApplicationContext(),
-				getApplicationContext().getString(R.string.pref_key_color_bg));
-		if (bgColor != null) {
-			if (ResourceUtil.COLOR_LIST != null) {
-				
-			} else {
-				ResourceUtil.initialize(getApplicationContext());
-			}
-			mTextView.setBackgroundColor(ResourceUtil.COLOR_LIST.get(bgColor));
-		}
-		mParams = new WindowManager.LayoutParams(
-				// WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY, //��긽
-				// 理��곸쐞���덇쾶
-				// WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH, //�곗튂
-				// �몄떇
-				WindowManager.LayoutParams.MATCH_PARENT,
-				WindowManager.LayoutParams.WRAP_CONTENT,
-				WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY,
-				WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
-				PixelFormat.TRANSLUCENT);
-		mParams.gravity = Gravity.TOP;
-		mWindowManager = (WindowManager) getSystemService(WINDOW_SERVICE); // �덈룄
-																			// 留ㅻ땲��
-		mWindowManager.addView(rootView, mParams); // 理쒖긽���덈룄�곗뿉 酉��ｊ린.
-													// permission�꾩슂.
-	}
+    private void initView() {
+        LayoutInflater li = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        rootView = li.inflate(R.layout.service_main, null);
+        mTextView = (TextView) rootView.findViewById(R.id.service_text);
+        mTextView.setText(SharedPreference.getSharedPreference(getApplicationContext(),
+                getApplicationContext().getString(R.string.pref_key_work)));
+        String bgColor = SharedPreference.getSharedPreference(getApplicationContext(),
+                getApplicationContext().getString(R.string.pref_key_color_bg));
+        if (bgColor != null) {
+            if (ResourceUtil.COLOR_LIST != null) {
+
+            } else {
+                ResourceUtil.initialize(getApplicationContext());
+            }
+            mTextView.setBackgroundColor(ResourceUtil.COLOR_LIST.get(bgColor));
+        }
+        mParams = new WindowManager.LayoutParams(
+        // WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY, //占쏙옙湲� // 筌ㅿ옙占쎄낯�욑옙占쏙옙�뉗쓺
+        // WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH, //占쎄퀣�� // 占쎈챷��
+        WindowManager.LayoutParams.MATCH_PARENT,
+                WindowManager.LayoutParams.WRAP_CONTENT,
+                WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY,
+                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+                PixelFormat.TRANSLUCENT);
+        mParams.gravity = Gravity.TOP;
+        mWindowManager = (WindowManager) getSystemService(WINDOW_SERVICE); // 占쎈뜄猷� // 筌띲끇�뀐옙占�
+        mWindowManager.addView(rootView, mParams); // 筌ㅼ뮇湲쏙옙占쏙옙�덈즲占쎄퀣肉��됵옙占쏙퐡由�
+                                                   // permission占쎄쑴��
+    }
 	
 	private void startAnim() {
 		Log.d(TAG, "hwankim startAnim");
