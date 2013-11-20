@@ -1,33 +1,98 @@
 <com.brighthead.whattodo.BgColorFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/bg_color_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent">
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/bg_color_relative"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:weightSum="1.0" >
 
-        <TextView
-            android:id="@+id/bg_color_text"
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:text="BG Color"
-            android:textSize="30dp" />
+            android:layout_weight="0.2" >
 
-        <ListView
-            android:id="@+id/bg_color_edit"
+            <TextView
+                android:id="@+id/bg_color_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="BG Color"
+                android:textSize="30dp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/bg_color_frame"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/bg_color_text" />
+            android:layout_weight="0.3" >
 
-        <Button
-            android:id="@+id/bg_color_button"
+            <TextView
+                android:id="@+id/bg_color_choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="choice color" />
+
+            <ListView
+                android:id="@+id/bg_color_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/bg_color_choice"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/bg_color_choice_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/bg_color_edit"
+                android:text="choice"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/text_color_frame"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/bg_color_edit"
-            android:text="@string/commit" />
-    </RelativeLayout>
+            android:layout_weight="0.3" >
+
+            <TextView
+                android:id="@+id/text_color_choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="choice color" />
+
+            <ListView
+                android:id="@+id/text_color_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_color_choice"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/text_color_choice_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_color_edit"
+                android:text="choice"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/bg_color_button_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2">
+
+            <Button
+                android:id="@+id/bg_color_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/commit" />
+        </RelativeLayout>
+    </LinearLayout>
 
 </com.brighthead.whattodo.BgColorFrameLayout>

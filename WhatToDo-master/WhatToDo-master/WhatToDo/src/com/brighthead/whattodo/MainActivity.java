@@ -89,6 +89,15 @@ public class MainActivity extends Activity implements View.OnClickListener,
 							.get(bgColor));
 				}
 			}
+			String textColor = SharedPreference.getSharedPreference(
+					getApplicationContext(),
+					getString(R.string.pref_key_color_text));
+			if (ResourceUtil.COLOR_LIST != null) {
+				if (ResourceUtil.COLOR_LIST.get(textColor) != null) {
+					mWorkText.setTextColor(ResourceUtil.COLOR_LIST
+							.get(textColor));
+				}
+			}
 		}
 
 		if (mMainView == null) {
@@ -265,6 +274,8 @@ public class MainActivity extends Activity implements View.OnClickListener,
 				getApplicationContext(), getString(R.string.pref_key_work));
 		String bgColor = SharedPreference.getSharedPreference(
 				getApplicationContext(), getString(R.string.pref_key_color_bg));
+		String textColor = SharedPreference.getSharedPreference(
+				getApplicationContext(), getString(R.string.pref_key_color_text));
 		if (text == null) {
 			text = "EditWork";
 		}
@@ -274,6 +285,13 @@ public class MainActivity extends Activity implements View.OnClickListener,
 			if (ResourceUtil.COLOR_LIST.get(bgColor) != null) {
 				mWorkText.setBackgroundColor(ResourceUtil.COLOR_LIST
 						.get(bgColor));
+			}
+		}
+		Log.d(TAG, "setViewPreference text " + text + " textColor " + textColor);
+		if (ResourceUtil.COLOR_LIST != null && textColor != null) {
+			if (ResourceUtil.COLOR_LIST.get(textColor) != null) {
+				mWorkText.setTextColor(ResourceUtil.COLOR_LIST
+						.get(textColor));
 			}
 		}
 	}

@@ -75,6 +75,8 @@ public class WhatToDoService extends Service implements OnTouchListener,
                 getApplicationContext().getString(R.string.pref_key_work)));
         String bgColor = SharedPreference.getSharedPreference(getApplicationContext(),
                 getApplicationContext().getString(R.string.pref_key_color_bg));
+        String textColor = SharedPreference.getSharedPreference(getApplicationContext(),
+                getApplicationContext().getString(R.string.pref_key_color_text));
         if (bgColor != null) {
             if (ResourceUtil.COLOR_LIST != null) {
 
@@ -82,6 +84,14 @@ public class WhatToDoService extends Service implements OnTouchListener,
                 ResourceUtil.initialize(getApplicationContext());
             }
             mTextView.setBackgroundColor(ResourceUtil.COLOR_LIST.get(bgColor));
+        }
+        if (textColor != null) {
+            if (ResourceUtil.COLOR_LIST != null) {
+
+            } else {
+                ResourceUtil.initialize(getApplicationContext());
+            }
+            mTextView.setTextColor(ResourceUtil.COLOR_LIST.get(textColor));
         }
         mParams = new WindowManager.LayoutParams(
         // WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY, //占쏙옙湲� // 筌ㅿ옙占쎄낯�욑옙占쏙옙�뉗쓺

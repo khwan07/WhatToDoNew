@@ -3,31 +3,60 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/edit_work_relative"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+		android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:weightSum="1.0" >
 
-        <TextView
-            android:id="@+id/edit_work_text"
+        <RelativeLayout
+            android:id="@+id/text_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:text="EditWork"
-            android:textSize="30dp" />
+            android:layout_weight="0.2" >
 
-        <EditText
-            android:id="@+id/edit_work_edit"
+            <TextView
+                android:id="@+id/edit_work_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="EditWork"
+                android:textSize="30dp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/edit_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/edit_work_text" />
+            android:layout_weight="0.6" >
+            
+            <TextView 
+                android:id="@+id/edit_work_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="EditWork" />
 
-        <Button
-            android:id="@+id/edit_work_button"
+            <EditText
+                android:id="@+id/edit_work_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/button_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/edit_work_edit"
-            android:text="@string/commit" />
-    </RelativeLayout>
+            android:layout_weight="0.2" >
+
+            <Button
+                android:id="@+id/edit_work_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/commit" />
+        </RelativeLayout>
+    </LinearLayout>
 
 </com.brighthead.whattodo.EditWorkFrameLayout>
